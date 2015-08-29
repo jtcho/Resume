@@ -1,18 +1,37 @@
 
-% Packages and Document Config
+%% resume.cls
+%%
+%% Custom LaTeX class file template for my resume!
 
-\documentclass[a4paper, 10pt]{article}
-\usepackage{fontspec}
+\ProvidesClass{resume}[2015/08/28 Resume]
+% Read all documentclass options and check for *.min for options.
+% if no such file exists pass to the article class.
+\DeclareOption*{\OInputIfFileExists{\CurrentOption.min}{}{%
+    \PassOptionsToClass{\CurrentOption}{article}}}
+% Execute options processing.
+\ProcessOptions \relax
+
+\LoadClass{article}
+
+% Package Dependencies
+\RequirePackage{fontspec}
+\RequirePackage{xunicode, xltxtra, url, parskip}
+\RequirePackage[usenames, dvipsnames]{xcolor}
+\RequirePackage[cm]{fullpage}
+\RequirePackage{hyperref}
+\RequirePackage{titlesec}
+\RequirePackage[verbose, lmargin=0.5in, rmargin=0.5in, tmargin=0.5in, bmargin=0.5in]{geometry}
+
 \defaultfontfeatures{Mapping=tex-text}
 \setmainfont[SmallCapsFont = Linux Libertine Display, ItalicFont = Linux Libertine Italic, BoldFont = Linux Libertine Bold]{Linux Libertine Display}
-\usepackage{xunicode, xltxtra, url, parskip}
-\usepackage[usenames, dvipsnames]{xcolor}
-\usepackage[cm]{fullpage}
-\usepackage{hyperref}
 \definecolor{linkcolour}{rgb}{0,0.2,0.6}
 \hypersetup{colorlinks,breaklinks,urlcolor=linkcolour,linkcolor=linkcolour}
 
-\usepackage{titlesec}
 \titleformat{\section}{\centering \large \scshape}{}{0em}{}[\titlerule]
 \titlespacing{\section}{0pt}{3pt}{3pt}
 
+% Remove page numbers.
+\pagestyle{empty} 
+
+%
+\newcommand{\ul}[1]{\underline{#1}}
